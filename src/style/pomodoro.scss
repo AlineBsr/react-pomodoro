@@ -1,0 +1,28 @@
+@import '_buttons.scss';
+
+#pomodoro{
+    display: flex;
+    font-size: 10rem; 
+    justify-content: center;
+    & .mins .secs{
+        color: pink;
+        border: 1px dotted pink;
+        background-color: black;
+    }
+}
+
+.dots{
+    display: flex;
+    align-items: center;
+    font-size: 5rem; 
+    animation-duration: 1s;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    transition: none;
+}
+
+@keyframes blink {
+  0%   { opacity:1; }
+  50%   {opacity:0; }
+  100% { opacity:1; }
+}

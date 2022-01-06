@@ -1,0 +1,56 @@
+.start {
+  background-color: red;
+  color: white;
+}
+
+.stop {
+  hidden: false;
+}
+
+#pomodoro {
+  display: flex;
+  font-size: 10rem;
+  justify-content: center;
+}
+#pomodoro .mins .secs {
+  color: pink;
+  border: 1px dotted pink;
+  background-color: black;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  font-size: 5rem;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-name: blink;
+          animation-name: blink;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  transition: none;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
