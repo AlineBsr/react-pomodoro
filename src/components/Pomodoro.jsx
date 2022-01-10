@@ -49,7 +49,7 @@ useEffect(() => {
       </div>
       <Buttons onClick={() => { handleStartStopClick(); }} className="controls"> {" "} {startStop} </Buttons><br/>
       <Buttons disabled={run} onClick={() => { setMins(mins + 1); }} className="controls"> {" "} Add mins {" "} </Buttons>
-      <Buttons disabled={run} onClick={() => { setMins(mins - 1); }} className="controls"> {" "} Del mins {" "} </Buttons>
+      <Buttons disabled={run} onClick={() => { mins > -1 ? setMins(0) : setMins(mins - 1) ; }} className="controls"> {" "} Del mins {" "} </Buttons>
     </>
   );
 };
