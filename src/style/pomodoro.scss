@@ -1,14 +1,19 @@
-@import '_buttons.scss';
-
-#pomodoro{
+#pomodoro {
     display: flex;
     font-size: 10rem; 
     justify-content: center;
-    & .mins .secs{
-        color: pink;
-        border: 1px dotted pink;
+    & .mins, .secs{
+        color: grey;
+        border: 3px dotted pink;
         background-color: black;
+        padding:1rem;
     }
+}
+
+.controls {
+    padding:1rem;
+    font-size:20px;
+    font-weight: bold;
 }
 
 .dots{

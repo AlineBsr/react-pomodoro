@@ -1,32 +1,57 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import '../style/pomodoro.css';
-import Buttons from './Buttons';
+import React from "react";
+import { useState, useEffect } from "react";
+import Buttons from "./Buttons";
+import "../style/pomodoro.css";
 
 const Pomodoro = () => {
-    const [secs, setSecs] = useState(0);
-    const [mins, setMins] = useState(9);
-    const [run, setRun] = useState(false); 
+  let [secs, setSecs] = useState(5);
+  let [mins, setMins] = useState(0);
+  let [run, setRun] = useState(false);
+  let [startStop, setStartStop] = useState("Start");
+  
+  function handleStartStopClick() {
+    setRun(!run);
+    startStop === "Start" ? setStartStop("Stop") : setStartStop("Start");
+  }
 
-   
-      return(
-        <>
-        <div id="pomodoro">
-            <div className="mins" value={mins}>
-                { mins < 10 ? "0" + mins : mins }
-            </div>
-            <div className="dots">:</div>
-            <div className="mins" value={secs}> 
-                { secs < 10 ? "0" + secs : secs }
-            </div>
-        </div>
+useEffect(() => {
+  if(secs === 0 && mins === 0 ){
+    setStartStop("Start");
+    setMins(25);
+    return setRun(false) ; }
 
-            <Buttons  className="controls" value="Start" />
+  if(run){
+    let myInterval = setInterval( () => {
+    clearInterval(myInterval);
 
-            {/* <Buttons onClick={() => setStop(false)} disabled={startBut} className="controls">Start</Buttons> */}
-            {/* <Buttons onClick={() => setStop(true)} hidden={stopBut} className="controls">Stop</Buttons> */}
-        </>
-    );
-}
+    if(secs === 0) {
+      if (mins !== 0){
+        setSecs(59);
+        setMins(mins - 1);
+      }else{
+        setSecs(59);
+        setRun(!run);
+        setStartStop("Start");
+      }
+      }else{
+        setSecs(secs -1);
+      }
+    }, 1000);
+  }
+  }, [run, mins, secs]);
+
+  return (
+    <>
+      <div id="pomodoro">
+        <div className="mins" value={mins}>{mins < 10 ? "0" + mins : mins} </div>
+        <div className="dots">:</div>
+        <div className="mins" value={secs}>{secs < 10 ? "0" + secs : secs} </div>
+      </div>
+      <Buttons onClick={() => { handleStartStopClick(); }} className="controls"> {" "} {startStop} </Buttons><br/>
+      <Buttons disabled={run} onClick={() => { setMins(mins + 1); }} className="controls"> {" "} Add mins {" "} </Buttons>
+      <Buttons disabled={run} onClick={() => { setMins(mins - 1); }} className="controls"> {" "} Del mins {" "} </Buttons>
+    </>
+  );
+};
 
 export default Pomodoro;
